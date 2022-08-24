@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+
+        <div class="imagem">
+            <img src="img/undraw_join_re_w1lh.svg" alt="">
+        </div>
+        <div class="form">
+
+            <form action="#">
+                <div class="form-header">
+
+
+                    <div class="title">
+                        <h1>Cadastre-se</h1>
+                    </div>
+                    <div class="login-button">
+                        <button><a href="#">Entrar</a></button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="firstname">Primeiro Nome</label>
+                        <input id="firstname" type="text" name="firstname" placeholder="digite seu primeiro nome" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="lastname">Segundo Nome</label>
+                        <input type="text" id="lastname" name="lastname" placeholder="digite segundo nome" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" id="email" placeholder="digite seu email" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="number">Telefone</label>
+                        <input type="tel" name="number" id="number" required placeholder="(xx)xxxx-xxxx">
+                    </div>
+                    <div class="input-box">
+                        <label for="password">Senha</label>
+                        <input type="password" name="password" id="password" required placeholder="digite sua senha">
+                        <!-- ;<button type="button" id="button-status"></button><br> -->
+                        <p class="msg"></p>
+                    </div>
+                    <div class="input-box">
+                        <label for="confirmedpassword"> Confirmar Senha</label>
+                        <input type="password" name="confirmedpassword" id="confirmedpassword" required placeholder="confirme sua senha">
+                    </div>
+                </div>
+                <div class="gender-inputs">
+                    <div class="gendle-title">
+                        <h6>Gênero</h6>
+                    </div>
+                    <div class="gender-group">
+                        <div class="gender-input">
+                            <input type="radio" id="female" name="gender">
+                            <label for="female">feminino</label>
+                        </div>
+                        <div class="gender-input">
+                            <input type="radio" id="male" name="gender">
+                            <label for="male">Maculino  </label>
+                        </div>
+                        <div class="gender-input">
+                            <input type="radio" id="other" name="gender">
+                            <label for="outher">Outro</label>
+                        </div>
+                        <div class="gender-input">
+                            <input type="radio" id="none" name="gender">
+                            <label for="outher">não dizer</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="continue-button">
+                    <button><a href="#">Contiunar</a></button>
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+
+
+        <script src="script.js"></script>
+        <script type="text/javascript">
+            /*Epressões Regulares*/
+            let regEx1 = /\d/,
+                /*\d ou [0-9] numeros*/
+                regEx2 = /[a-z]/,
+                /*letras de a-z */
+                regEx3 = /\W/,
+                /*simbolos*/
+                regEx4 = /[A-Z]/; /*letras de A-Z */
+            document.querySelector('#password').addEventListener('keyup', function(event) {
+                if (event.keyCode != 32 && event.keyCode != 20 && event.keyCode != 16) {
+                    let check = checkPassword(this.value);
+                    document.querySelector('.msg').innerText = message(check)
+                }
+
+            })
+
+            function checkPassword(value) {
+                let level = 0;
+                /*if ternario*/
+                if (value.length > 5) {
+                    regEx1.test(value) ? ++level : '';
+                    regEx2.test(value) ? ++level : '';
+                    regEx3.test(value) ? ++level : '';
+                    regEx4.test(value) ? ++level : '';
+                }
+
+                return level
+            }
+
+            function message(index) {
+                let message = [
+                    'Menor que 6',
+                    'Pessimo',
+                    'Fraco',
+                    'Médio',
+                    'Alto',
+                    'Forte'
+                ]
+                return message[index]
+            }
+        </script>
+
+
+
+
+
+
+</body>
+
+
+</html>
